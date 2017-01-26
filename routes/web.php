@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+
+// Companies
+Route::group(['prefix' => 'company'], function () {
+    Route::get('/', 'CompanyController@index');
+    Route::get('/{company}', 'CompanyController@show');
+    Route::post('/create', 'CompanyController@store');
+    Route::get('/remove/{company}', 'CompanyController@remove');
+});
