@@ -17,13 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
+Route::get('/admin', );
 
 
-// Companies
-Route::group(['prefix' => 'company'], function () {
-    Route::get('/', 'CompanyController@index');
-    Route::get('/{company}', 'CompanyController@show');
-    Route::post('/create', 'CompanyController@store');
-    Route::get('/remove/{company}', 'CompanyController@remove');
+// Team
+Route::group(['prefix' => 'team', 'middleware' => 'role:admin'], function () {
+    Route::get('/', 'TeamController@index');
 });
